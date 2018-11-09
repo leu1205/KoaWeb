@@ -1,0 +1,14 @@
+extends ./layout
+
+append content
+    ul
+        - for(let i = 0; i < result.length; i++)
+            li(id = result[i].id class = result[i].kind) #{result[i].title}
+
+append javascripts
+    script(type="text/javascript").
+        $("li").click(function(){
+            $.get("/blog/"+$(this).attr('id'), function(result){
+                console.log("done!");
+            });
+        });

@@ -1,0 +1,41 @@
+extends ./layout
+
+append stylesheets
+    link(rel="stylesheet", href="../assets/css/index.css", type="text/css")
+append content
+    #main
+        section#home
+            .container
+                h1 Welcome！
+                p.lead This is my first KoaWeb。
+        section#about
+            .container
+                h1 About
+                p.lead This is about my KoaWeb。
+        section#contact
+            .container
+                h1 Contact
+                p.lead This is my contact way。
+                .card
+                    .card-body
+                        form(novalidate).needs-validation
+                            .form-group
+                                label(for="InputName") Name
+                                Input(placeholder="Your Name" required)#InputName.form-control
+                                .invalid-feedback.font-italic.font-weight-bold Please tell me your name.
+                            .form-group
+                                label(for="InputEmail") Email
+                                Input(type="email", placeholder="Your Email@example.com" required)#InputEmail.form-control
+                                .invalid-feedback.font-italic.font-weight-bold Please provide your email.
+                            .form-group
+                                label(for="InputSubject") Subject
+                                Input(required)#InputSubject.form-control
+                                .invalid-feedback.font-italic.font-weight-bold Please provide a subject.
+                            .form-group
+                                label(for="InputContent") Content
+                                textarea(name="content", cols="30", rows="4" required)#InputContent.form-control
+                                .invalid-feedback.font-italic.font-weight-bold Please provide a message.
+                            button(type="submit").btn.btn-primary.offset-sm-11 submit
+append javascripts
+    script(src="../javascripts/index.js")
+        

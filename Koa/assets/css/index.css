@@ -1,0 +1,42 @@
+body{
+    padding-top: 62.4px;
+    background-color: whitesmoke;
+}
+
+#cardTop{
+    margin-top: 1em;
+}
+
+.card{
+    margin-bottom: 1em;
+}
+
+.jumbotron{
+    background-color: transparent;
+    margin-bottom: 0;
+}
+
+section div.container{
+    text-align: center;
+    padding-top: 1%;
+    padding-bottom: 50%;
+}
+
+section form{
+    text-align: left;
+}
+
+#home{
+    background: url('../img/cat1.jpg') top center;
+    background-size: cover;
+}
+
+#about{
+    background: url('../img/cat2.jpg') top center;
+    background-size: cover;
+}
+
+.header-fixed{
+    position: fixed;
+    width: 100%;
+}
