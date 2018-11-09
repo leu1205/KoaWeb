@@ -11,8 +11,8 @@ html
             title= page_title
         block stylesheets
             link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css")
-            link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css",integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB",crossorigin="anonymous")
-        
+            link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css", integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB", crossorigin="anonymous")
+            link(rel="stylesheet", href="https://use.fontawesome.com/releases/v5.5.0/css/all.css", integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU", crossorigin="anonymous")
     
     body
         block header
@@ -31,7 +31,26 @@ html
                         li.nav-item#menu-item-4
                             a.nav-link(href="/comment") COMMENT
                         li.nav-item.col.offset-3#menu-item-5
-                            a.nav-link(href="/login") LOGIN
+                            a.nav-link(data-toggle="modal" data-target="#loginModal") LOGIN
+                            
+            #loginModal.modal(role='dialog')
+                .modal-dialog(role='document')
+                    .modal-content
+                        .modal-header
+                            h5.modal-title.offset-sm-5 LOG IN
+                            button.close(type='button', data-dismiss='modal')
+                                i.fas.fa-times
+                        .modal-body
+                            form
+                                .form-group
+                                    label(for='username') User Name
+                                    input#username.form-control(name='username' required)
+                                .form-group
+                                    label(for='password') Password
+                                    input#password.form-control(name='password', type='password' required)
+                        .modal-footer
+                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
+                            button#login.btn.btn-primary(type='button', data-dismiss='modal') Log in
             
         block content
         block footer

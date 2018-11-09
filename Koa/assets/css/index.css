@@ -11,11 +11,6 @@ body{
     margin-bottom: 1em;
 }
 
-.jumbotron{
-    background-color: transparent;
-    margin-bottom: 0;
-}
-
 section div.container{
     text-align: center;
     padding-top: 1%;
