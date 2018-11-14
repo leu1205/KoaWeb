@@ -1,6 +1,6 @@
 const formidable = require('formidable');
 const fs = require('fs');
-const dbAPI = require('./db');
+const dbAPI = require('./models/db');
 
 function Upload(ctx){
     var form = new formidable.IncomingForm();

@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "node start"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js",
+    "stop": "pkill -lf app.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,8 @@
     "koa-session": "^5.10.0",
     "koa-static": "^5.0.0",
     "koa-views": "^6.1.4",
-    "mongoose": "^5.3.11"
-  }
+    "mongoose": "^5.3.11",
+    "pug": "^2.0.3"
+  },
+  "devDependencies": {}
 }
