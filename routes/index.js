@@ -1,6 +1,6 @@
 const Router = require('koa-router');
 const Upload = require('../upload');
-const dbAPI = require('../models/db');
+//const dbAPI = require('../models/db');
 
 const router = new Router();
 
@@ -29,7 +29,7 @@ router.get('/login', async (ctx, next) => {
 router.post('/login', async (ctx) => {
     let username = ctx.request.body.username;
     let password = ctx.request.body.password;
-    const result = await dbAPI.checkLogin(username, password);
+    //const result = await dbAPI.checkLogin(username, password);
 
     if (result) {
         ctx.cookies.set('LoginStatus', true);

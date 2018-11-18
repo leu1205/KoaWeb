@@ -7,7 +7,10 @@ const session = require('koa-session');
 const validStatus = require('./validStatus');
 const index = require('./routes/index');
 const employees = require('./routes/employees');
+const Router = require('koa-router');
 const app = new koa();
+const router = new Router;
+
 /*const config = {
     key: 'login',
     maxAge: 86400000,
@@ -20,12 +23,14 @@ const app = new koa();
 
 app.use(bodyParser());
 app.use(views(__dirname + "/view", {extension: 'pug'}));
-app.use(static(__dirname, {extensions: ['jpg','css']}));
+app.use(static(__dirname + "/static", {extensions: ['jpg','css']}));
 //app.use(validStatus);
-app.use(index.routes());
-app.use(employees.routes());
+router.use(index.routes(), index.allowedMethods());
+router.use(employees.routes(), employees.allowedMethods());
+app.use(router.routes()).use(router.allowedMethods());
 app.use(logger());
 
-
-
-app.listen(3000);
+var server = app.listen(3000,()=>{
+    var port = server.address().port;
+    console.log("App now running on port", port);
+});

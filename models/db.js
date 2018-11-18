@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
+/*const mongoose = require('mongoose');
 
 mongoose.connect('mongodb://localhost/test',{ useNewUrlParser: true });
 
 var db = mongoose.connection;
-db.on('error',console.error.bind(console, 'connection error:'));
-db.once('open', function(){console.log("Connected Successfully!")});
+//db.on('error',console.error.bind(console, 'connection error:'));
+//db.once('open', function(){console.log("Connected Successfully!")});
 
 var loginSchema = new mongoose.Schema({
 	username:String,
@@ -23,14 +23,6 @@ var blogListSchema = new mongoose.Schema({
 var login = db.model("login",loginSchema,"login");
 var blog = db.model("blog",blogSchema,"blog");
 var blogList = db.model("blogList",blogListSchema,"blogList");
-
-/*var user1 = new login({username:"Jack",password:"test"});
-user1.save(function(err){if(err)return handleError(err);});
-
-var query = login.find({username:"Jack"});
-query.then(function(doc){
-	console.log(doc);
-});*/
 
 async function checkLogin(username,password){
 	let query =login.where({username:username,password:password});
@@ -75,10 +67,6 @@ async function insertBlogList(title,kind){
 	});
 }
 
-/*var path = require('path').join(__dirname, 'eat.txt');
-var iconv = require('iconv-lite')
-saveBlog(path,'0');*/
-
 async function saveBlog(path,id){
 	var content = require("fs").readFileSync(path,'binary');
 	var buf = Buffer.from(content,'binary');
@@ -116,4 +104,4 @@ var dbAPI = {
 	readBlog:readBlog
 }
 
-module.exports = dbAPI;
+module.exports = dbAPI;*/
