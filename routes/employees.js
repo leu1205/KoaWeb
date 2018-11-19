@@ -7,10 +7,9 @@ const router = new Router({
 router.get('/', async (ctx, next) => {
     await employees.find({}, (err, docs) => {
         if (err) {
-            ctx.status = 400;
-            ctx.body = err
+            ctx.res.statusCode = 400;
         } else {
-            ctx.status = 200;
+            ctx.res.statusCode = 200;
             ctx.body = docs;
         }
     });
@@ -23,10 +22,9 @@ router.get('/:employee_id', async (ctx, next) => {
 
     await employees.findOne({employee_id:employee_id}, (err, doc) => {
         if (err) {
-            ctx.status = 400;
-            ctx.body = err;
+            ctx.res.statusCode = 400;
         } else {
-            ctx.status = 200;
+            ctx.res.statusCode = 200;
             ctx.body = doc;
         }
     });
@@ -45,11 +43,11 @@ router.post('/:employee_id', async (ctx, next) => {
         updated_at: Date.now()
     };
     var employee = new employees(data);
-
-    await employee.save((err,doc) => {
-        if (err) {
-            ctx.status = 400;
-            ctx.body = err;
+    await employee.save().then( doc => {
+        if(doc) {
+            ctx.res.statusCode = 200;
+        } else {
+            ctx.res.statusCode = 400;
         }
     });
 
@@ -69,8 +67,9 @@ router.patch('/:employee_id', async (ctx, next) => {
 
     await employees.update(query, { $set: doc }, (err)=>{
         if(err) {
-            ctx.status = 400;
-            throw err;
+            ctx.res.statusCode = 400;
+        } else {
+            ctx.res.statusCode = 200;
         }
     });
 
@@ -81,10 +80,11 @@ router.del('/:employee_id', async (ctx, next) => {
     let employee_id = ctx.params.employee_id;
     let  query = {employee_id:employee_id};
 
-    employees.remove(query, (err) => {
+    await employees.deleteOne(query, (err) => {
         if(err) {
-            ctx.status = 400;
-            throw err;
+            ctx.res.statusCode = 400;
+        } else {
+            ctx.res.statusCode = 200;
         }
     });
 
