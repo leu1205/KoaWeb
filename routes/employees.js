@@ -4,6 +4,29 @@ const router = new Router({
     prefix: "/employees"
 });
 
+router.get("/create", async (ctx, next) => {
+    await ctx.render('./employees/create');
+    next();
+});
+
+router.get("/detail/:employee_id", async (ctx, next) => {
+    let employee_id = ctx.params.employee_id;
+    await ctx.render("./employees/detail", {employee_id});
+    next();
+});
+
+router.get("/edit/:employee_id", async (ctx, next) => {
+    let employee_id = ctx.params.employee_id;
+    await ctx.render("./employees/edit", {employee_id});
+    next();
+});
+
+router.get("/delete/:employee_id", async (ctx, next) => {
+    let employee_id = ctx.params.employee_id;
+    await ctx.render("./employees/delete", {employee_id});
+    next();
+});
+
 router.get('/', async (ctx, next) => {
     await employees.find({}, (err, docs) => {
         if (err) {
@@ -14,7 +37,7 @@ router.get('/', async (ctx, next) => {
         }
     });
 
-    await next();
+    next();
 });
 
 router.get('/:employee_id', async (ctx, next) => {
@@ -29,17 +52,24 @@ router.get('/:employee_id', async (ctx, next) => {
         }
     });
 
-    await next();
+    next();
 });
 
-router.post('/:employee_id', async (ctx, next) => {
-    let employee_id = ctx.params.employee_id;
+router.post('/', async (ctx, next) => {
+    let employee_id = 0;
+    await employees.findOne().sort({employee_id:-1}).then(function(doc) {
+        if(doc != null){
+            employee_id = doc.employee_id;
+        }
+        ++employee_id;
+    });
 
     let data = {
         employee_id: employee_id,
-        name: "王小明",
-        gender: "男",
-        title: "CEO",
+        name: ctx.request.body.name,
+        gender: ctx.request.body.gender,
+        title: ctx.request.body.title,
+        content: ctx.request.body.content,
         updated_at: Date.now()
     };
     var employee = new employees(data);
@@ -51,7 +81,7 @@ router.post('/:employee_id', async (ctx, next) => {
         }
     });
 
-    await next();
+    next();
 });
 
 router.patch('/:employee_id', async (ctx, next) => {
@@ -59,13 +89,14 @@ router.patch('/:employee_id', async (ctx, next) => {
 
     let  query = {employee_id:employee_id};
     let doc = {
-        name: "王大明",
-        gender: "男",
-        title: "行銷部長",
+        name: ctx.request.body.name,
+        gender: ctx.request.body.gender,
+        title: ctx.request.body.title,
+        content: ctx.request.body.content,
         updated_at: Date.now()
     };
 
-    await employees.update(query, { $set: doc }, (err)=>{
+    await employees.updateOne(query, { $set: doc }, (err)=>{
         if(err) {
             ctx.res.statusCode = 400;
         } else {
@@ -73,10 +104,10 @@ router.patch('/:employee_id', async (ctx, next) => {
         }
     });
 
-    await next();
+    next();
 });
 
-router.del('/:employee_id', async (ctx, next) => {
+router.delete('/:employee_id', async (ctx, next) => {
     let employee_id = ctx.params.employee_id;
     let  query = {employee_id:employee_id};
 
@@ -88,7 +119,7 @@ router.del('/:employee_id', async (ctx, next) => {
         }
     });
 
-    await next();
+    next();
 });
 
 module.exports = router;

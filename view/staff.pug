@@ -1,0 +1,26 @@
+extends ./layout
+
+append stylesheets
+    link(rel="stylesheet", href="/css/staff.css", type="text/css")
+
+append content
+    .container
+        h1.text-center STAFF
+        p.lead.text-center Team members
+        .card
+            .card-body
+                .card-title
+                    a(href="/employees/create").btn.btn-primary 新增員工
+                table.table.table-striped
+                    thead.thead-dark
+                        tr
+                            th 編號
+                            th 姓名
+                            th 性別
+                            th 職稱
+                            th 操作
+                    tbody
+                    
+
+append javascripts
+    script(src="/javascripts/staff")

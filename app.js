@@ -23,11 +23,12 @@ const router = new Router;
 
 app.use(bodyParser());
 app.use(views(__dirname + "/view", {extension: 'pug'}));
-app.use(static(__dirname + "/static", {extensions: ['jpg','css']}));
+app.use(static(__dirname + "/static", {extensions: ['jpg','css','js']}));
 //app.use(validStatus);
-router.use(index.routes(), index.allowedMethods());
-router.use(employees.routes(), employees.allowedMethods());
-app.use(router.routes()).use(router.allowedMethods());
+/*router.use(index.routes(), index.allowedMethods());
+router.use(employees.routes(), employees.allowedMethods());*/
+app.use(index.routes()).use(router.allowedMethods());
+app.use(employees.routes()).use(router.allowedMethods());
 app.use(logger());
 
 var server = app.listen(3000,()=>{

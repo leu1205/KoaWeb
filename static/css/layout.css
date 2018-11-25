@@ -1,0 +1,9 @@
+body{
+    padding-top: 62.4px;
+    background-color: whitesmoke;
+}
+
+.header-fixed{
+    position: fixed;
+    width: 100%;
+}

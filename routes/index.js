@@ -1,16 +1,10 @@
 const Router = require('koa-router');
-const Upload = require('../upload');
-//const dbAPI = require('../models/db');
 
 const router = new Router();
 
 router.get('/', async (ctx, next) => {
     await ctx.render("index");
     await next();
-});
-
-router.get('/about', async (ctx) => {
-    ctx.body = 'About Me';
 });
 
 router.get('/login', async (ctx, next) => {
@@ -41,6 +35,11 @@ router.post('/login', async (ctx) => {
 
 router.get('/comment', async (ctx, next) => {
     await ctx.render('comment');
+    await next();
+})
+
+router.get('/staff', async (ctx, next) => {
+    await ctx.render('staff');
     await next();
 })
 

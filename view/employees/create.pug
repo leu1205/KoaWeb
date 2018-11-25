@@ -1,0 +1,33 @@
+extends ../layout
+
+append content
+    .container
+        h1.text-center STAFF
+        p.lead.text-center Team members
+        .card
+            .card-body
+                form(novalidate).needs-validation
+                    .form-group
+                        label(for="InputName").col-form-label Name
+                        Input(type="text" name="eName" placeholder="Your Name" required)#InputName.form-control
+                        .invalid-feedback.font-italic.font-weight-bold Please tell me your name..
+                    .form-group
+                        label(for="gender").col-form-label Gender
+                        select(name="gender" required)#gender.form-control
+                            option(selected disabled) Choose...
+                            option(value="male") male
+                            option(value="female") female
+                        .invalid-feedback.font-italic.font-weight-bold Please provide your gender.
+                    .form-group
+                        label(for="InputSubject").col-form-label Title
+                        Input(type="text" name="title" placeholder="Your Title" required)#InputSubject.form-control
+                        .invalid-feedback.font-italic.font-weight-bold Please provide a title.
+                    .form-group
+                        label(for="InputContent").col-form-label Content
+                        textarea(name="content" placeholder="The man is so lazy that he leaves nothing." cols="30" rows="4" required)#InputContent.form-control
+                        .invalid-feedback.font-italic.font-weight-bold Please provide a message.
+                    a(href="/staff").btn.btn-primary.offset-sm-9 Back List
+                    button(type="submit").btn.btn-success.ml-sm-2 Create
+                    
+append javascripts
+    script(src="/javascripts/employees/create")
