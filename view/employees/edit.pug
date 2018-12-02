@@ -7,7 +7,7 @@ append content
         .card
             .card-body
                 h5.card-title ID：#{employee_id}
-                form(novalidate).needs-validation
+                form#editForm.needs-validation(novalidate)
                     .form-group
                         label(for="InputName").col-form-label Name
                         Input(type="text" name="eName" placeholder="Your Name" required)#InputName.form-control

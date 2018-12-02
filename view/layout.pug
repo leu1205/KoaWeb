@@ -1,5 +1,9 @@
 block variables
     - const page_title = "koaWeb";
+    - var btn1 = "";
+    - var btn2 = "";
+
+#{username != "" ? (btn1 = username, btn2="LOG OUT") : (btn1 = "SIGN UP", btn2="LOG IN")}
 
 doctype html
 html
@@ -22,7 +26,7 @@ html
                 button.navbar-toggler(type="button",data-toggler="collapse",data-target="#navbarContent")
                     span.navbar-toggler-icon
                 #navbarContent.collapse.navbar-collapse.row
-                    ul.navbar-nav.col.offset-7
+                    ul.navbar-nav.offset-sm-7.col.justify-content-end
                         li.nav-item#menu-item-1
                             a.nav-link(href="/#home") HOME
                         li.nav-item#menu-item-2
@@ -33,8 +37,10 @@ html
                             a.nav-link(href="/staff") STAFF
                         li.nav-item#menu-item-5
                             a.nav-link(href="/comment") COMMENT
-                        li.nav-item.col.offset-1#menu-item-5
-                            a.nav-link(data-toggle="modal" data-target="#loginModal") LOGIN
+                        li.nav-item.offset-sm-2#menu-item-6
+                            a.nav-link #{btn1}
+                        li.nav-item#menu-item-7
+                            a.nav-link #{btn2}
                             
             #loginModal.modal(role='dialog')
                 .modal-dialog(role='document')
@@ -44,16 +50,40 @@ html
                             button.close(type='button', data-dismiss='modal')
                                 i.fas.fa-times
                         .modal-body
-                            form
+                            form#loginForm.needs-validation(novalidate)
                                 .form-group
                                     label(for='username') User Name
                                     input#username.form-control(name='username' required)
+                                    .invalid-feedback.font-italic.font-weight-bold Please provide a username..
                                 .form-group
                                     label(for='password') Password
                                     input#password.form-control(name='password', type='password' required)
-                        .modal-footer
-                            button.btn.btn-secondary(type='button', data-dismiss='modal') Close
-                            button#login.btn.btn-primary(type='button', data-dismiss='modal') Log in
+                                    .invalid-feedback.font-italic.font-weight-bold Please provide a password..
+                                .row.justify-content-end
+                                    button.btn.btn-secondary.mr-sm-3(type='button', data-dismiss='modal') Close
+                                    button#login.btn.btn-primary.mr-sm-3(type='submit') Log in
+
+            #signupModal.modal(role='dialog')
+                .modal-dialog(role='document')
+                    .modal-content
+                        .modal-header
+                            h5.modal-title.offset-sm-5 SIGN UP
+                            button.close(type='button', data-dismiss='modal')
+                                i.fas.fa-times
+                        .modal-body
+                            form#signupForm.needs-validation(novalidate)
+                                .form-group
+                                    label(for='username') User Name
+                                    input#username.form-control(name='username' required)
+                                    .invalid-feedback.font-italic.font-weight-bold Please provide a username..
+                                .form-group
+                                    label(for='password') Password
+                                    input#password.form-control(name='password', type='password' required)
+                                    .invalid-feedback.font-italic.font-weight-bold Please provide a password..
+                                .row.justify-content-end
+                                    button.btn.btn-secondary.mr-sm-3(type='button', data-dismiss='modal') Close
+                                    button.btn.btn-primary.mr-sm-3(type='submit') Sign Up
+                            
             
         block content
         block footer

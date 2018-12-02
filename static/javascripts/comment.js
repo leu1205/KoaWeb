@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $('.needs-validation').submit(function(e){
+    $('#cmForm').submit(function(e){
         e.preventDefault();
         if($(this)[0].checkValidity() === false){
             e.stopPropagation();
@@ -16,7 +16,7 @@ $(document).ready(function(){
                 return year + "-" + month + "-" + date+" "+hour+":"+minute+":"+second;  
             }
             var now = getFormatDate();
-            var name = $('input[name="username"]').val();
+            var name = $('input[name="cName"]').val();
             var content = $('textarea[name="content"]').val();
             $('#main').append(`
                 <div class="card">

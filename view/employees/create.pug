@@ -6,7 +6,7 @@ append content
         p.lead.text-center Team members
         .card
             .card-body
-                form(novalidate).needs-validation
+                form#createForm.needs-validation(novalidate)
                     .form-group
                         label(for="InputName").col-form-label Name
                         Input(type="text" name="eName" placeholder="Your Name" required)#InputName.form-control

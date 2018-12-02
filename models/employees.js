@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 
-mongoose.connect("mongodb://localhost:27017/employees", {
-    useNewUrlParser: true
-});
-
 var Elyschema = new mongoose.Schema({
     employee_id: String,
     name: String,

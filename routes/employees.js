@@ -5,25 +5,34 @@ const router = new Router({
 });
 
 router.get("/create", async (ctx, next) => {
-    await ctx.render('./employees/create');
+    let username = "";
+    if(ctx.session.username){
+        username = ctx.session.username;
+    }
+
+    await ctx.render('./employees/create', {username:username});
     next();
 });
 
 router.get("/detail/:employee_id", async (ctx, next) => {
     let employee_id = ctx.params.employee_id;
-    await ctx.render("./employees/detail", {employee_id});
+    let username = "";
+    if(ctx.session.username){
+        username = ctx.session.username;
+    }
+
+    await ctx.render("./employees/detail", {employee_id:employee_id, username:username});
     next();
 });
 
 router.get("/edit/:employee_id", async (ctx, next) => {
     let employee_id = ctx.params.employee_id;
-    await ctx.render("./employees/edit", {employee_id});
-    next();
-});
+    let username = "";
+    if(ctx.session.username){
+        username = ctx.session.username;
+    }
 
-router.get("/delete/:employee_id", async (ctx, next) => {
-    let employee_id = ctx.params.employee_id;
-    await ctx.render("./employees/delete", {employee_id});
+    await ctx.render("./employees/edit", {employee_id:employee_id, username:username});
     next();
 });
 
@@ -66,7 +75,7 @@ router.post('/', async (ctx, next) => {
 
     let data = {
         employee_id: employee_id,
-        name: ctx.request.body.name,
+        name: ctx.request.body.eName,
         gender: ctx.request.body.gender,
         title: ctx.request.body.title,
         content: ctx.request.body.content,
@@ -89,7 +98,7 @@ router.patch('/:employee_id', async (ctx, next) => {
 
     let  query = {employee_id:employee_id};
     let doc = {
-        name: ctx.request.body.name,
+        name: ctx.request.body.eName,
         gender: ctx.request.body.gender,
         title: ctx.request.body.title,
         content: ctx.request.body.content,

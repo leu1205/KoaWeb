@@ -6,11 +6,11 @@ append content
         p.lead.text-center I will reply you as soon as possible.
         #cardTop.card
             .card-body
-                form(novalidate).needs-validation
+                form#cmForm.needs-validation(novalidate)
                     .form-group.row
                         label(for="InputName").col-sm-1.col-form-label Name
                         div
-                            input(name = "username", type="text", placeholder="Name" required)#InputName.form-control.col-sm-9
+                            input(name = "cName", type="text", placeholder="Name" required)#InputName.form-control.col-sm-9
                             .invalid-feedback.font-italic.font-weight-bold Please choose a username.
                     .form-group
                         label(for="InputText") Content
